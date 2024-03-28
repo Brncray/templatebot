@@ -5,7 +5,7 @@ async function presence(client) {
       status: "online",
       activities: [
         {
-          name: `discord.gg/void`,
+          name: `discord.gg/`,
           type: 3,
         },
       ],
@@ -25,11 +25,5 @@ async function presence(client) {
     await presence(client);
     setInterval(presence, 10 * 60 * 1000, client);
     await client.handleCommands();
-    await erlc.setKey(process.env.erlc_key); 
-    if (!erlc.getKey()) {
-        console.log("ERLC Key not set");
-    } else {
-        console.log("ERLC Key set");
-    }
   }
   
