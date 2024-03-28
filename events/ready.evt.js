@@ -1,4 +1,3 @@
-import { erlc } from "erlc-wrapper";
 
 async function presence(client) {
     return client.user?.setPresence({

@@ -60,7 +60,17 @@ export const data = {
       if (!interaction.isMessageContextMenuCommand()) return;
       console.log(interaction);
     } else if (interaction.isModalSubmit()) {
-      console.log(interaction); // data needs to be put here for modal submits
+      if (!interaction.isModalSubmit()) return;
+      if(interaction.customId === "tickets_mdl" || interaction.customId === "marks_mdl" || interaction.customId === "startup_mdl") {
+        const cmd = await client.cmds.get("config");
+        if (!cmd) return;
+        try {
+          cmd.handleModals(interaction, client);
+        } catch (error) {
+          console.error(error);
+        }
+      
+      }
     }
   }
   
