@@ -61,7 +61,7 @@ export const data = {
       console.log(interaction);
     } else if (interaction.isModalSubmit()) {
       if (!interaction.isModalSubmit()) return;
-      if(interaction.customId === "tickets_mdl" || interaction.customId === "marks_mdl" || interaction.customId === "startup_mdl") {
+      if(interaction.customId === "tickets_mdl" || interaction.customId === "marks_mdl" || interaction.customId === "startup_mdl" || interaction.customId === "release_mdl" || interaction.customId === "reinvites_mdl") {
         const cmd = await client.cmds.get("config");
         if (!cmd) return;
         try {

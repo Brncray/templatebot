@@ -22,7 +22,7 @@ const guildsettings = new Schema({
       title: "Server not configured",
       description:
         "This server has not been configured yet. Please run the /config command to configure the bot for your server.",
-      color: 0xff0000,
+        color: 0xff0000,
     },
   },
   reinvitesEmbed: {
@@ -38,4 +38,14 @@ const guildsettings = new Schema({
   pings: { type: Array, default: [] },
 });
 
+const Ticket = new Schema({
+  guildId: { type : String, required: true },
+  recipientId: { type: String, required: true },
+  user: { type: String, required: true },
+  ticketId: { type: String, required: true },
+  fine: { type: Number, required: true },
+  reason: { type: String, required: true },
+})
+
 export const guildSettings = model("guildSettings", guildsettings);
+export const ticket = model("ticket", Ticket);
