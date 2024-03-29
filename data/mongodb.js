@@ -36,6 +36,7 @@ const guildsettings = new Schema({
     
   },
   pings: { type: Array, default: [] },
+  premium: { type: Boolean, default: false },
 });
 
 const Ticket = new Schema({
@@ -47,5 +48,11 @@ const Ticket = new Schema({
   reason: { type: String, required: true },
 })
 
+const PremiumCode = new Schema({
+  code: { type: String, required: true},
+  uses: { type: Number, default: 1},
+}); 
+
 export const guildSettings = model("guildSettings", guildsettings);
 export const ticket = model("ticket", Ticket);
+export const premiumCode = model("premiumCode", PremiumCode);

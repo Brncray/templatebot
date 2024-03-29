@@ -142,6 +142,16 @@ export async function execute(interaction, client) {
         modal.addComponents(row);
         i.showModal(modal);
       } else if (i.values[0] === "startup_config") {
+        const serverConfig = await guildSettings.findOne({
+          guildId: i.guild.id,
+        });
+        // check for premium status
+        if (!serverConfig.premium) {
+          return i.reply({
+            content: "This feature is only available to premium servers.",
+            ephemeral: true,
+          });
+        }
         const modal = new ModalBuilder()
           .setCustomId("startup_mdl")
           .setTitle("Startup Embed Configuration");
@@ -178,6 +188,16 @@ export async function execute(interaction, client) {
         modal.addComponents(row4);
         i.showModal(modal);
       } else if (i.values[0] === "release_config") {
+        const serverConfig = await guildSettings.findOne({
+          guildId: i.guild.id,
+        });
+        // check for premium status
+        if (!serverConfig.premium) {
+          return i.reply({
+            content: "This feature is only available to premium servers.",
+            ephemeral: true,
+          });
+        }
         const modal = new ModalBuilder()
           .setCustomId("release_mdl")
           .setTitle("Release Embed Configuration");
@@ -212,6 +232,16 @@ export async function execute(interaction, client) {
         modal.addComponents(row4);
         i.showModal(modal);
       } else if (i.values[0] === "reinvites_config") {
+        const serverConfig = await guildSettings.findOne({
+          guildId: i.guild.id,
+        });
+        // check for premium status
+        if (!serverConfig.premium) {
+          return i.reply({
+            content: "This feature is only available to premium servers.",
+            ephemeral: true,
+          });
+        }
         const modal = new ModalBuilder()
           .setCustomId("reinvites_mdl")
           .setTitle("Reinvites Embed Configuration");

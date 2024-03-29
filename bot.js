@@ -192,14 +192,18 @@ export class Bot extends Client {
             console.log(`Command ${command.data.name} loaded globally`);
         }
         await this?.application?.commands?.set(commandArray);
-        // now i want to register commands to a specific guild that have the ending .guild.cmd.js
+        
+        let guildCommands = [];
         const guildCmdFo = this.crawler("./commands", 2, ".guild.js");
         for (const guildCmdFi of guildCmdFo) {
             const guildCommand = await import(`./${guildCmdFi}`);
             this.cmds.set(guildCommand.data.name, guildCommand);
-            await this.guilds.cache.get(guildCommand.data.guild)?.commands.set([guildCommand.data]);
+            //await this.guilds.cache.get(guildCommand.data.guild)?.commands.set([guildCommand.data]);
+            guildCommands.push(guildCommand.data);
             console.log(`Command ${guildCommand.data.name} loaded in guild ${guildCommand.data.guild}`);
         }
+        await this.guilds.cache.get(guildCommands[0].guild)?.commands.set(guildCommands);
+        
         console.log(`Slash commands uploaded`);
         return this;
     };
